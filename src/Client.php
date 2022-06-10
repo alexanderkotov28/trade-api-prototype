@@ -7,13 +7,12 @@ class Client
     private $arParams = array();
     private $arError = array();
 
-
     public function __construct($params = array())
     {
         $this->arParams = $params;
     }
-    
-    private function Request($req = array())
+
+    private function reqeust($req = array())
     {
         $msec = round(microtime(true) * 1000);
         $req['post']['ts'] = $msec;
@@ -52,26 +51,23 @@ class Client
         return $arResponse;
     }
 
-
-    public function GetError()
+    public function getError()
     {
         return $this->arError;
     }
 
-
-    public function Info()
+    public function info()
     {
-        $res = $this->Request(array(
+        $res = $this->reqeust(array(
             'method' => 'info',
         ));
 
         return $res;
     }
 
-
-    public function Orders($pair = 'BTC_USDT')
+    public function orders($pair = 'BTC_USDT')
     {
-        $res = $this->Request(array(
+        $res = $this->reqeust(array(
             'method' => 'orders',
             'post' => array(
                 'pair' => $pair,
@@ -81,20 +77,18 @@ class Client
         return $res['pairs'];
     }
 
-
-    public function Account()
+    public function account()
     {
-        $res = $this->Request(array(
+        $res = $this->reqeust(array(
             'method' => 'account',
         ));
 
         return $res['balances'];
     }
 
-
-    public function OrderCreate($req = array())
+    public function orderCreate($req = array())
     {
-        $res = $this->Request(array(
+        $res = $this->reqeust(array(
             'method' => 'order_create',
             'post' => $req,
         ));
@@ -102,10 +96,9 @@ class Client
         return $res;
     }
 
-
-    public function OrderStatus($req = array())
+    public function orderStatus($req = array())
     {
-        $res = $this->Request(array(
+        $res = $this->reqeust(array(
             'method' => 'order_status',
             'post' => $req,
         ));
@@ -113,10 +106,9 @@ class Client
         return $res['order'];
     }
 
-
-    public function MyOrders($req = array())
+    public function myOrders($req = array())
     {
-        $res = $this->Request(array(
+        $res = $this->reqeust(array(
             'method' => 'my_orders',
             'post' => $req,
         ));
