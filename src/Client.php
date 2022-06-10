@@ -4,12 +4,15 @@ namespace AlexanderKotov28\TradeApiPrototype;
 
 class Client
 {
-    private $arParams = array();
+    private ?string $api_secret_key;
+    private ?string $api_id;
     private $arError = array();
 
-    public function __construct($params = array())
+    private ClientInterface $http_client;
+    public function __construct(?string $api_id = null, ?string $api_secret_key = null)
     {
-        $this->arParams = $params;
+        $this->api_id = $api_id;
+        $this->api_secret_key = $api_secret_key;
     }
 
     private function reqeust($req = array())
@@ -19,7 +22,7 @@ class Client
 
         $post = json_encode($req['post']);
 
-        $sign = hash_hmac('sha256', $req['method'].$post, $this->arParams['key']);
+        $sign = hash_hmac('sha256', $req['method'].$post, $this->api_secret_key);
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "https://payeer.com/api/trade/".$req['method']);
@@ -33,7 +36,7 @@ class Client
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             "Content-Type: application/json",
-            "API-ID: ".$this->arParams['id'],
+            "API-ID: ".$this->api_id,
             "API-SIGN: ".$sign
         ));
 
