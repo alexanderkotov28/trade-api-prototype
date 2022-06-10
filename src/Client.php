@@ -2,19 +2,24 @@
 
 namespace AlexanderKotov28\TradeApiPrototype;
 
+use AlexanderKotov28\TradeApiPrototype\Contracts\RequestFactory as RequestFactoryInterface;
+use AlexanderKotov28\TradeApiPrototype\Requests\InfoRequest;
 class Client
 {
-    private ?string $api_secret_key;
-    private ?string $api_id;
     private $arError = array();
 
-    private ClientInterface $http_client;
+    private RequestFactoryInterface $request_factory;
+
     public function __construct(?string $api_id = null, ?string $api_secret_key = null)
     {
-        $this->api_id = $api_id;
-        $this->api_secret_key = $api_secret_key;
+        $this->request_factory = new RequestFactory($api_id, $api_secret_key, new \GuzzleHttp\Client());
     }
 
+    /**
+     * @param $req
+     * @return mixed
+     * @deprecated This method will be removed after HttpClient implementation
+     */
     private function reqeust($req = array())
     {
         $msec = round(microtime(true) * 1000);
@@ -59,13 +64,9 @@ class Client
         return $this->arError;
     }
 
-    public function info()
+    public function info(): InfoRequest
     {
-        $res = $this->reqeust(array(
-            'method' => 'info',
-        ));
-
-        return $res;
+        return $this->request_factory->createInfoRequest();
     }
 
     public function orders($pair = 'BTC_USDT')

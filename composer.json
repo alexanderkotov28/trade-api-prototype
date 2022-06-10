@@ -4,5 +4,9 @@
     "psr-4": {
       "AlexanderKotov28\\TradeApiPrototype\\": "src/"
     }
+  },
+  "require": {
+    "php": "^8.1",
+    "guzzlehttp/guzzle": "^7.4.4"
   }
 }
