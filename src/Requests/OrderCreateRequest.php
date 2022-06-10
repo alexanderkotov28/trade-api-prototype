@@ -34,8 +34,8 @@ class OrderCreateRequest extends PrivateRequest
 
         $params = [
             'pair' => $this->order->getPair(),
-            'type' => $this->order->getType(),
-            'action' => $this->order->getAction()
+            'type' => $this->order->getType()->value,
+            'action' => $this->order->getAction()->value
         ];
 
         $params = array_merge($params, match ($this->order->getType()) {

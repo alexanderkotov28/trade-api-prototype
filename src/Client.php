@@ -5,8 +5,10 @@ namespace AlexanderKotov28\TradeApiPrototype;
 use AlexanderKotov28\TradeApiPrototype\Contracts\RequestFactory as RequestFactoryInterface;
 use AlexanderKotov28\TradeApiPrototype\Requests\AccountRequest;
 use AlexanderKotov28\TradeApiPrototype\Requests\InfoRequest;
+use AlexanderKotov28\TradeApiPrototype\Requests\MyOrdersRequest;
 use AlexanderKotov28\TradeApiPrototype\Requests\OrderCreateRequest;
 use AlexanderKotov28\TradeApiPrototype\Requests\OrdersRequest;
+use AlexanderKotov28\TradeApiPrototype\Requests\OrderStatusRequest;
 
 class Client
 {
@@ -93,14 +95,9 @@ class Client
         return $this->request_factory->createOrderStatusRequest();
     }
 
-    public function myOrders($req = array())
+    public function myOrders(): MyOrdersRequest
     {
-        $res = $this->reqeust(array(
-            'method' => 'my_orders',
-            'post' => $req,
-        ));
-
-        return $res['items'];
+        return $this->request_factory->createMyOrdersRequest();
     }
 
 }
