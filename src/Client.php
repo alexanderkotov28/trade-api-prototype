@@ -88,14 +88,9 @@ class Client
         return $this->request_factory->createOrderCreateRequest();
     }
 
-    public function orderStatus($req = array())
+    public function orderStatus(): OrderStatusRequest
     {
-        $res = $this->reqeust(array(
-            'method' => 'order_status',
-            'post' => $req,
-        ));
-
-        return $res['order'];
+        return $this->request_factory->createOrderStatusRequest();
     }
 
     public function myOrders($req = array())

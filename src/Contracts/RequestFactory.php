@@ -4,7 +4,9 @@ namespace AlexanderKotov28\TradeApiPrototype\Contracts;
 
 use AlexanderKotov28\TradeApiPrototype\Requests\AccountRequest;
 use AlexanderKotov28\TradeApiPrototype\Requests\InfoRequest;
+use AlexanderKotov28\TradeApiPrototype\Requests\OrderCreateRequest;
 use AlexanderKotov28\TradeApiPrototype\Requests\OrdersRequest;
+use AlexanderKotov28\TradeApiPrototype\Requests\OrderStatusRequest;
 
 interface RequestFactory
 {
@@ -13,4 +15,8 @@ interface RequestFactory
     public function createOrdersRequest(): OrdersRequest;
 
     public function createAccountRequest(): AccountRequest;
+
+    public function createOrderCreateRequest(): OrderCreateRequest;
+
+    public function createOrderStatusRequest(): OrderStatusRequest;
 }

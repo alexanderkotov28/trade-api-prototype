@@ -21,19 +21,11 @@ class OrdersRequest extends PublicRequest
 
     protected function getParams(): array
     {
-        if (!isset($this->pair)){
-            throw new InvalidParameterException('Parameter "pair" must be specified for this request');
-        }
-
         return [
-            'pair' => $this->pair
+            'pair' => $this->pair ?? throw new InvalidParameterException('Parameter "pair" must be specified for this request')
         ];
     }
 
-    /**
-     * @param string $pair
-     * @return OrdersRequest
-     */
     public function setPair(string $pair): OrdersRequest
     {
         $this->pair = $pair;
