@@ -1,0 +1,33 @@
+<?php
+
+namespace AlexanderKotov28\TradeApiPrototype;
+
+use AlexanderKotov28\TradeApiPrototype\Exceptions\ApiErrorException;
+use AlexanderKotov28\TradeApiPrototype\Exceptions\InvalidParameterException;
+use AlexanderKotov28\TradeApiPrototype\Exceptions\UnexpectedResponseBody;
+
+class Response
+{
+    public array $data;
+
+    public function __construct(string $json_data)
+    {
+        try {
+            $this->data = json_decode($json_data, true, flags: JSON_THROW_ON_ERROR);
+        } catch (\JsonException) {
+            throw new UnexpectedResponseBody();
+        }
+
+        $this->checkSuccess();
+    }
+
+    private function checkSuccess()
+    {
+        if (($this->data['success'] ?? false) === false) {
+            throw match ($this->data['error']['code']) {
+                'INVALID_PARAMETER' => new InvalidParameterException('Invalid request parameter "' . $this->data['error']['parameter'] . '"'),
+                default => new ApiErrorException($this->data['error']['code'] ?? 'API Error')
+            };
+        }
+    }
+}

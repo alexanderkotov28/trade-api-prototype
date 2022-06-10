@@ -2,8 +2,8 @@
 
 namespace AlexanderKotov28\TradeApiPrototype\Contracts\Requests;
 
+use AlexanderKotov28\TradeApiPrototype\Response;
 use GuzzleHttp\ClientInterface;
-use Psr\Http\Message\RequestInterface;
 
 abstract class Request
 {
@@ -26,11 +26,10 @@ abstract class Request
 
     abstract protected function getHeaders(): array;
 
-    public function execute()
+    public function execute(): Response
     {
         $response = $this->http_client->request($this->getMethod(), $this->getUri(), $this->getOptions());
-        $result = json_decode($response->getBody()->getContents());
-        return $result;
+        return new Response($response->getBody()->getContents());
     }
 
     private function getUri(): string
