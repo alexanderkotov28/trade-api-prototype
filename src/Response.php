@@ -4,6 +4,8 @@ namespace AlexanderKotov28\TradeApiPrototype;
 
 use AlexanderKotov28\TradeApiPrototype\Exceptions\ApiErrorException;
 use AlexanderKotov28\TradeApiPrototype\Exceptions\InvalidParameterException;
+use AlexanderKotov28\TradeApiPrototype\Exceptions\InvalidSignatureException;
+use AlexanderKotov28\TradeApiPrototype\Exceptions\InvalidTimestampException;
 use AlexanderKotov28\TradeApiPrototype\Exceptions\UnexpectedResponseBody;
 
 class Response
@@ -26,6 +28,8 @@ class Response
         if (($this->data['success'] ?? false) === false) {
             throw match ($this->data['error']['code']) {
                 'INVALID_PARAMETER' => new InvalidParameterException('Invalid request parameter "' . $this->data['error']['parameter'] . '"'),
+                'INVALID_SIGNATURE' => new InvalidSignatureException('Invalid signature. Check API-ID, secret key or user settings'),
+                'INVALID_TIMESTAMP' => new InvalidTimestampException('Invalid timestamp. Check your server time or the request went to the API server for more than 60 seconds'),
                 default => new ApiErrorException($this->data['error']['code'] ?? 'API Error')
             };
         }

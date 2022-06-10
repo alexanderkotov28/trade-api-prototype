@@ -3,6 +3,7 @@
 namespace AlexanderKotov28\TradeApiPrototype;
 
 use AlexanderKotov28\TradeApiPrototype\Contracts\RequestFactory as RequestFactoryInterface;
+use AlexanderKotov28\TradeApiPrototype\Requests\AccountRequest;
 use AlexanderKotov28\TradeApiPrototype\Requests\InfoRequest;
 use AlexanderKotov28\TradeApiPrototype\Requests\OrdersRequest;
 
@@ -76,13 +77,9 @@ class Client
         return $this->request_factory->createOrdersRequest();
     }
 
-    public function account()
+    public function account(): AccountRequest
     {
-        $res = $this->reqeust(array(
-            'method' => 'account',
-        ));
-
-        return $res['balances'];
+        return $this->request_factory->createAccountRequest();
     }
 
     public function orderCreate($req = array())
