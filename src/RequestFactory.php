@@ -5,6 +5,7 @@ namespace AlexanderKotov28\TradeApiPrototype;
 use AlexanderKotov28\TradeApiPrototype\Contracts\RequestFactory as RequestFactoryInterface;
 use AlexanderKotov28\TradeApiPrototype\Requests\AccountRequest;
 use AlexanderKotov28\TradeApiPrototype\Requests\InfoRequest;
+use AlexanderKotov28\TradeApiPrototype\Requests\OrderCreateRequest;
 use AlexanderKotov28\TradeApiPrototype\Requests\OrdersRequest;
 use GuzzleHttp\ClientInterface;
 
@@ -34,6 +35,13 @@ class RequestFactory implements RequestFactoryInterface
     public function createAccountRequest(): AccountRequest
     {
         return (new AccountRequest($this->http_client))
+            ->setApiId($this->api_id)
+            ->setApiSecretKey($this->api_secret_key);
+    }
+
+    public function createOrderCreateRequest(): OrderCreateRequest
+    {
+        return (new OrderCreateRequest($this->http_client))
             ->setApiId($this->api_id)
             ->setApiSecretKey($this->api_secret_key);
     }
