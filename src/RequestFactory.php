@@ -4,6 +4,7 @@ namespace AlexanderKotov28\TradeApiPrototype;
 
 use AlexanderKotov28\TradeApiPrototype\Contracts\RequestFactory as RequestFactoryInterface;
 use AlexanderKotov28\TradeApiPrototype\Requests\InfoRequest;
+use AlexanderKotov28\TradeApiPrototype\Requests\OrdersRequest;
 use GuzzleHttp\ClientInterface;
 
 class RequestFactory implements RequestFactoryInterface
@@ -22,5 +23,10 @@ class RequestFactory implements RequestFactoryInterface
     public function createInfoRequest(): InfoRequest
     {
         return new InfoRequest($this->http_client);
+    }
+
+    public function createOrdersRequest(): OrdersRequest
+    {
+        return new OrdersRequest($this->http_client);
     }
 }

@@ -4,6 +4,8 @@ namespace AlexanderKotov28\TradeApiPrototype;
 
 use AlexanderKotov28\TradeApiPrototype\Contracts\RequestFactory as RequestFactoryInterface;
 use AlexanderKotov28\TradeApiPrototype\Requests\InfoRequest;
+use AlexanderKotov28\TradeApiPrototype\Requests\OrdersRequest;
+
 class Client
 {
     private $arError = array();
@@ -69,16 +71,9 @@ class Client
         return $this->request_factory->createInfoRequest();
     }
 
-    public function orders($pair = 'BTC_USDT')
+    public function orders(): OrdersRequest
     {
-        $res = $this->reqeust(array(
-            'method' => 'orders',
-            'post' => array(
-                'pair' => $pair,
-            ),
-        ));
-
-        return $res['pairs'];
+        return $this->request_factory->createOrdersRequest();
     }
 
     public function account()
