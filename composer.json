@@ -1,0 +1,8 @@
+{
+  "name": "alexanderkotov28/trade-api-prototype",
+  "autoload": {
+    "psr-4": {
+      "AlexanderKotov28\\TradeApiPrototype\\": "src/"
+    }
+  }
+}

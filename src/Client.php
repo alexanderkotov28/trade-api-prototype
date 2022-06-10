@@ -1,5 +1,8 @@
 <?php
-class Api_Trade_Payeer
+
+namespace AlexanderKotov28\TradeApiPrototype;
+
+class Client
 {
     private $arParams = array();
     private $arError = array();
@@ -9,8 +12,7 @@ class Api_Trade_Payeer
     {
         $this->arParams = $params;
     }
-
-
+    
     private function Request($req = array())
     {
         $msec = round(microtime(true) * 1000);
@@ -121,4 +123,5 @@ class Api_Trade_Payeer
 
         return $res['items'];
     }
+
 }
