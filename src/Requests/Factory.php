@@ -9,6 +9,7 @@ use AlexanderKotov28\TradeApiPrototype\Contracts\Requests\AccountRequest as Acco
 use AlexanderKotov28\TradeApiPrototype\Contracts\Requests\OrderCreateRequest as OrderCreateRequestInterface;
 use AlexanderKotov28\TradeApiPrototype\Contracts\Requests\OrderStatusRequest as OrderStatusRequestInterface;
 use AlexanderKotov28\TradeApiPrototype\Contracts\Requests\MyOrdersRequest as MyOrdersRequestInterface;
+use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 
 class Factory implements RequestFactoryInterface
@@ -17,11 +18,11 @@ class Factory implements RequestFactoryInterface
     private ?string $api_secret_key;
     private ClientInterface $http_client;
 
-    public function __construct(ClientInterface $http_client = null, ?string $api_id = null, ?string $api_secret_key = null)
+    public function __construct(?string $api_id = null, ?string $api_secret_key = null)
     {
         $this->api_id = $api_id;
         $this->api_secret_key = $api_secret_key;
-        $this->http_client = $http_client;
+        $this->http_client = new Client();
     }
 
     public function createInfoRequest(): InfoRequestInterface

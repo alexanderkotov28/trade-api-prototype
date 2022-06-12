@@ -7,7 +7,7 @@ use AlexanderKotov28\TradeApiPrototype\Common\Order;
 use AlexanderKotov28\TradeApiPrototype\Common\OrderAction;
 use AlexanderKotov28\TradeApiPrototype\Common\OrderType;
 
-$reqeust_factory = new Factory(new \GuzzleHttp\Client(), 'API-ID', 'API-SECRET');
+$reqeust_factory = new Factory('API-ID', 'API-SECRET');
 $client = new Client($reqeust_factory);
 
 $order = (new Order())
