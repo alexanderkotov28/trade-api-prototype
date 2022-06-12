@@ -19,5 +19,5 @@ $order = (new Order())
 
 $response = $client->orderCreate()->setOrder($order)->execute();
 
-print_r($response->data);
+print_r($response->getData());
 ```
