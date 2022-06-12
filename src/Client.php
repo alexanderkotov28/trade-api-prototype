@@ -2,7 +2,7 @@
 
 namespace AlexanderKotov28\TradeApiPrototype;
 
-use AlexanderKotov28\TradeApiPrototype\Contracts\RequestFactory as RequestFactoryInterface;
+use AlexanderKotov28\TradeApiPrototype\Contracts\RequestFactory;
 use AlexanderKotov28\TradeApiPrototype\Requests\AccountRequest;
 use AlexanderKotov28\TradeApiPrototype\Requests\InfoRequest;
 use AlexanderKotov28\TradeApiPrototype\Requests\MyOrdersRequest;
@@ -12,11 +12,11 @@ use AlexanderKotov28\TradeApiPrototype\Requests\OrderStatusRequest;
 
 class Client
 {
-    private RequestFactoryInterface $request_factory;
+    private RequestFactory $request_factory;
 
-    public function __construct(?string $api_id = null, ?string $api_secret_key = null)
+    public function __construct(RequestFactory $request_factory)
     {
-        $this->request_factory = new RequestFactory($api_id, $api_secret_key, new \GuzzleHttp\Client());
+        $this->request_factory = $request_factory;
     }
 
     public function info(): InfoRequest

@@ -17,7 +17,7 @@ class RequestFactory implements RequestFactoryInterface
     private ?string $api_secret_key;
     private ClientInterface $http_client;
 
-    public function __construct(?string $api_id = null, ?string $api_secret_key = null, ?ClientInterface $http_client = null)
+    public function __construct(ClientInterface $http_client = null, ?string $api_id = null, ?string $api_secret_key = null)
     {
         $this->api_id = $api_id;
         $this->api_secret_key = $api_secret_key;
