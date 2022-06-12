@@ -7,22 +7,22 @@ use \AlexanderKotov28\TradeApiPrototype\Contracts\Requests\AccountRequest as Acc
 class AccountRequest extends PrivateRequest implements AccountRequestInterface
 {
 
-    protected function getPath(): string
+    public function getPath(): string
     {
         return '/account';
     }
 
-    protected function getMethodName(): string
+    public function getMethodName(): string
     {
         return 'account';
     }
 
-    protected function getMethod(): string
+    public function getMethod(): string
     {
         return 'POST';
     }
 
-    protected function getParams(): array
+    public function getParams(): array
     {
         return [];
     }

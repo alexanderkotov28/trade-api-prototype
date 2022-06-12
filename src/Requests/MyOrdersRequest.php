@@ -10,22 +10,22 @@ class MyOrdersRequest extends PrivateRequest implements MyOrdersRequestInterface
     protected string $pair;
     protected OrderAction $action;
 
-    protected function getMethodName(): string
+    public function getMethodName(): string
     {
         return 'my_orders';
     }
 
-    protected function getPath(): string
+    public function getPath(): string
     {
         return '/my_orders';
     }
 
-    protected function getMethod(): string
+    public function getMethod(): string
     {
         return 'POST';
     }
 
-    protected function getParams(): array
+    public function getParams(): array
     {
         return [
             'action' => $this->action->value ?? null,

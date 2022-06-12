@@ -9,17 +9,17 @@ class OrdersRequest extends PublicRequest implements OrdersRequestInterface
 {
     protected string $pair;
 
-    protected function getPath(): string
+    public function getPath(): string
     {
         return '/orders';
     }
 
-    protected function getMethod(): string
+    public function getMethod(): string
     {
         return 'GET';
     }
 
-    protected function getParams(): array
+    public function getParams(): array
     {
         return [
             'pair' => $this->getPair() ?? throw new InvalidParameterException('Parameter "pair" must be specified for this request')

@@ -10,22 +10,22 @@ class OrderStatusRequest extends PrivateRequest implements OrderStatusRequestInt
 
     protected int $order_id;
 
-    protected function getMethodName(): string
+    public function getMethodName(): string
     {
         return 'order_status';
     }
 
-    protected function getPath(): string
+    public function getPath(): string
     {
         return '/order_status';
     }
 
-    protected function getMethod(): string
+    public function getMethod(): string
     {
         return 'POST';
     }
 
-    protected function getParams(): array
+    public function getParams(): array
     {
         return [
             'order_id' => $this->order_id ?? throw new InvalidParameterException('Parameter "order_id" must be specified for this request')

@@ -7,7 +7,7 @@ abstract class PrivateRequest extends Request
     private string $api_id;
     private string $api_secret_key;
 
-    abstract protected function getMethodName(): string;
+    abstract public function getMethodName(): string;
 
     public function setApiId(string $api_id): static
     {
@@ -21,14 +21,14 @@ abstract class PrivateRequest extends Request
         return $this;
     }
 
-    protected function buildParams(): array
+    public function buildParams(): array
     {
         return array_merge($this->getParams(), [
             'ts' => round(microtime(true) * 1000)
         ]);
     }
 
-    protected function getHeaders(): array
+    public function getHeaders(): array
     {
         return [
             'API-ID' => $this->api_id,

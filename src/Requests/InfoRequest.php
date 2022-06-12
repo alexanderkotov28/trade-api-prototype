@@ -9,17 +9,17 @@ class InfoRequest extends PublicRequest implements InfoRequestInterface
 {
     protected ?string $pair = null;
 
-    protected function getPath(): string
+    public function getPath(): string
     {
         return '/info';
     }
 
-    protected function getMethod(): string
+    public function getMethod(): string
     {
         return $this->getPair() ? 'POST' : 'GET';
     }
 
-    protected function getParams(): array
+    public function getParams(): array
     {
         return [
             'pair' => $this->getPair()

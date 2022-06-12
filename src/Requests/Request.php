@@ -17,15 +17,15 @@ abstract class Request implements RequestInterface
         $this->http_client = $http_client;
     }
 
-    abstract protected function getPath(): string;
+    abstract public function getPath(): string;
 
-    abstract protected function getMethod(): string;
+    abstract public function getMethod(): string;
 
-    abstract protected function getParams(): array;
+    abstract public function getParams(): array;
 
-    abstract protected function buildParams(): array;
+    abstract public function buildParams(): array;
 
-    abstract protected function getHeaders(): array;
+    abstract public function getHeaders(): array;
 
     public function execute(): Response
     {

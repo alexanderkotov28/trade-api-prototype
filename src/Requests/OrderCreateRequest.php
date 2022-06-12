@@ -16,7 +16,7 @@ class OrderCreateRequest extends PrivateRequest implements OrderCreateRequestInt
         return '/order_create';
     }
 
-    protected function getMethodName(): string
+    public function getMethodName(): string
     {
         return 'order_create';
     }
@@ -26,7 +26,7 @@ class OrderCreateRequest extends PrivateRequest implements OrderCreateRequestInt
         return 'POST';
     }
 
-    protected function getParams(): array
+    public function getParams(): array
     {
         if (empty($this->order)) {
             throw new InvalidParameterException('Set Order to your Request for create');
@@ -34,8 +34,8 @@ class OrderCreateRequest extends PrivateRequest implements OrderCreateRequestInt
 
         $params = [
             'pair' => $this->order->getPair(),
-            'type' => $this->order->getType()->value,
-            'action' => $this->order->getAction()->value
+            'type' => $this->order->getType()->value ?? null,
+            'action' => $this->order->getAction()->value ?? null
         ];
 
         $params = array_merge($params, match ($this->order->getType()) {
@@ -69,6 +69,11 @@ class OrderCreateRequest extends PrivateRequest implements OrderCreateRequestInt
     {
         $this->order = $order;
         return $this;
+    }
+
+    public function getOrder(): ?Order
+    {
+        return $this->order ?? null;
     }
 
     /**
