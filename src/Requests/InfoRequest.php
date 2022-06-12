@@ -2,9 +2,10 @@
 
 namespace AlexanderKotov28\TradeApiPrototype\Requests;
 
-use AlexanderKotov28\TradeApiPrototype\Contracts\Requests\PublicRequest;
 
-class InfoRequest extends PublicRequest
+use AlexanderKotov28\TradeApiPrototype\Contracts\Requests\InfoRequest as InfoRequestInterface;
+
+class InfoRequest extends PublicRequest implements InfoRequestInterface
 {
     protected ?string $pair = null;
 

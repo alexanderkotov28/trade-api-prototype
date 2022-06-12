@@ -2,19 +2,19 @@
 
 namespace AlexanderKotov28\TradeApiPrototype;
 
-use AlexanderKotov28\TradeApiPrototype\Contracts\RequestFactory;
-use AlexanderKotov28\TradeApiPrototype\Requests\AccountRequest;
-use AlexanderKotov28\TradeApiPrototype\Requests\InfoRequest;
-use AlexanderKotov28\TradeApiPrototype\Requests\MyOrdersRequest;
-use AlexanderKotov28\TradeApiPrototype\Requests\OrderCreateRequest;
-use AlexanderKotov28\TradeApiPrototype\Requests\OrdersRequest;
-use AlexanderKotov28\TradeApiPrototype\Requests\OrderStatusRequest;
+use AlexanderKotov28\TradeApiPrototype\Contracts\Requests\Factory;
+use AlexanderKotov28\TradeApiPrototype\Contracts\Requests\AccountRequest;
+use AlexanderKotov28\TradeApiPrototype\Contracts\Requests\InfoRequest;
+use AlexanderKotov28\TradeApiPrototype\Contracts\Requests\MyOrdersRequest;
+use AlexanderKotov28\TradeApiPrototype\Contracts\Requests\OrderCreateRequest;
+use AlexanderKotov28\TradeApiPrototype\Contracts\Requests\OrdersRequest;
+use AlexanderKotov28\TradeApiPrototype\Contracts\Requests\OrderStatusRequest;
 
 class Client
 {
-    private RequestFactory $request_factory;
+    private Factory $request_factory;
 
-    public function __construct(RequestFactory $request_factory)
+    public function __construct(Factory $request_factory)
     {
         $this->request_factory = $request_factory;
     }

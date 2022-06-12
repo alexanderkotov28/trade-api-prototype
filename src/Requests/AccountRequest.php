@@ -2,9 +2,9 @@
 
 namespace AlexanderKotov28\TradeApiPrototype\Requests;
 
-use AlexanderKotov28\TradeApiPrototype\Contracts\Requests\PrivateRequest;
+use \AlexanderKotov28\TradeApiPrototype\Contracts\Requests\AccountRequest as AccountRequestInterface;
 
-class AccountRequest extends PrivateRequest
+class AccountRequest extends PrivateRequest implements AccountRequestInterface
 {
 
     protected function getPath(): string

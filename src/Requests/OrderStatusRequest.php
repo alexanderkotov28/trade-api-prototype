@@ -2,10 +2,10 @@
 
 namespace AlexanderKotov28\TradeApiPrototype\Requests;
 
-use AlexanderKotov28\TradeApiPrototype\Contracts\Requests\PrivateRequest;
 use AlexanderKotov28\TradeApiPrototype\Exceptions\InvalidParameterException;
+use AlexanderKotov28\TradeApiPrototype\Contracts\Requests\OrderStatusRequest as OrderStatusRequestInterface;
 
-class OrderStatusRequest extends PrivateRequest
+class OrderStatusRequest extends PrivateRequest implements OrderStatusRequestInterface
 {
 
     protected int $order_id;

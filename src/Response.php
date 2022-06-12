@@ -7,16 +7,17 @@ use AlexanderKotov28\TradeApiPrototype\Exceptions\InvalidParameterException;
 use AlexanderKotov28\TradeApiPrototype\Exceptions\InvalidSignatureException;
 use AlexanderKotov28\TradeApiPrototype\Exceptions\InvalidTimestampException;
 use AlexanderKotov28\TradeApiPrototype\Exceptions\UnexpectedResponseBody;
+use JsonException;
 
-class Response
+class Response implements Contracts\Response
 {
-    public array $data;
+    private array $data;
 
     public function __construct(string $json_data)
     {
         try {
             $this->data = json_decode($json_data, true, flags: JSON_THROW_ON_ERROR);
-        } catch (\JsonException) {
+        } catch (JsonException) {
             throw new UnexpectedResponseBody();
         }
 
@@ -33,5 +34,10 @@ class Response
                 default => new ApiErrorException($this->data['error']['code'] ?? 'API Error')
             };
         }
+    }
+
+    public function getData(): array
+    {
+        return $this->data ?? [];
     }
 }

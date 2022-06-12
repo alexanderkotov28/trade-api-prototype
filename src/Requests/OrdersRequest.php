@@ -2,10 +2,10 @@
 
 namespace AlexanderKotov28\TradeApiPrototype\Requests;
 
-use AlexanderKotov28\TradeApiPrototype\Contracts\Requests\PublicRequest;
+use AlexanderKotov28\TradeApiPrototype\Contracts\Requests\OrdersRequest as OrdersRequestInterface;
 use AlexanderKotov28\TradeApiPrototype\Exceptions\InvalidParameterException;
 
-class OrdersRequest extends PublicRequest
+class OrdersRequest extends PublicRequest implements OrdersRequestInterface
 {
     protected string $pair;
 
@@ -22,7 +22,7 @@ class OrdersRequest extends PublicRequest
     protected function getParams(): array
     {
         return [
-            'pair' => $this->pair ?? throw new InvalidParameterException('Parameter "pair" must be specified for this request')
+            'pair' => $this->getPair() ?? throw new InvalidParameterException('Parameter "pair" must be specified for this request')
         ];
     }
 
@@ -30,5 +30,10 @@ class OrdersRequest extends PublicRequest
     {
         $this->pair = $pair;
         return $this;
+    }
+
+    public function getPair(): ?string
+    {
+        return $this->pair ?? null;
     }
 }

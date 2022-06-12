@@ -2,12 +2,12 @@
 
 ```php
 use AlexanderKotov28\TradeApiPrototype\Client;
-use AlexanderKotov28\TradeApiPrototype\RequestFactory;
+use AlexanderKotov28\TradeApiPrototype\Requests\Factory;
 use AlexanderKotov28\TradeApiPrototype\Common\Order;
 use AlexanderKotov28\TradeApiPrototype\Common\OrderAction;
 use AlexanderKotov28\TradeApiPrototype\Common\OrderType;
 
-$reqeust_factory = new RequestFactory(new \GuzzleHttp\Client(), 'API-ID', 'API-SECRET');
+$reqeust_factory = new Factory(new \GuzzleHttp\Client(), 'API-ID', 'API-SECRET');
 $client = new Client($reqeust_factory);
 
 $order = (new Order())

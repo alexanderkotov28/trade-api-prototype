@@ -2,9 +2,6 @@
 
 namespace AlexanderKotov28\TradeApiPrototype\Common;
 
-
-use AlexanderKotov28\TradeApiPrototype\Exceptions\InvalidParameterException;
-
 class Order
 {
     protected string $pair;

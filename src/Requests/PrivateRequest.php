@@ -1,6 +1,6 @@
 <?php
 
-namespace AlexanderKotov28\TradeApiPrototype\Contracts\Requests;
+namespace AlexanderKotov28\TradeApiPrototype\Requests;
 
 abstract class PrivateRequest extends Request
 {

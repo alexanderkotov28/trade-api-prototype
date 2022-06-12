@@ -3,9 +3,9 @@
 namespace AlexanderKotov28\TradeApiPrototype\Requests;
 
 use AlexanderKotov28\TradeApiPrototype\Common\OrderAction;
-use AlexanderKotov28\TradeApiPrototype\Contracts\Requests\PrivateRequest;
+use AlexanderKotov28\TradeApiPrototype\Contracts\Requests\MyOrdersRequest as MyOrdersRequestInterface;
 
-class MyOrdersRequest extends PrivateRequest
+class MyOrdersRequest extends PrivateRequest implements MyOrdersRequestInterface
 {
     protected string $pair;
     protected OrderAction $action;

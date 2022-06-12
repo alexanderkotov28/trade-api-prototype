@@ -4,10 +4,10 @@ namespace AlexanderKotov28\TradeApiPrototype\Requests;
 
 use AlexanderKotov28\TradeApiPrototype\Common\Order;
 use AlexanderKotov28\TradeApiPrototype\Common\OrderType;
-use AlexanderKotov28\TradeApiPrototype\Contracts\Requests\PrivateRequest;
+use AlexanderKotov28\TradeApiPrototype\Contracts\Requests\OrderCreateRequest as OrderCreateRequestInterface;
 use AlexanderKotov28\TradeApiPrototype\Exceptions\InvalidParameterException;
 
-class OrderCreateRequest extends PrivateRequest
+class OrderCreateRequest extends PrivateRequest implements OrderCreateRequestInterface
 {
     protected Order $order;
 
@@ -62,7 +62,7 @@ class OrderCreateRequest extends PrivateRequest
             $params = array_merge($params, $this->getAmountOrValue());
         }
 
-        return [];
+        return $params;
     }
 
     public function setOrder(Order $order): OrderCreateRequest
